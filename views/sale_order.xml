@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_order_form_with_split_delivery" model="ir.ui.view">
+            <field name="name">sale.order.form.view.with_split_delivery</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="commitment_date" position="replace"/>
+                    <xpath expr="//field[@name='partner_id']" position='after'>
+                        <field name="f_delivery_split"/>
+                    </xpath>
+                    <xpath expr="//field[@name='payment_term_id']" position='after'>
+                        <field name="commitment_date"/>
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                        <field name="f_planned_date"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+</odoo>
